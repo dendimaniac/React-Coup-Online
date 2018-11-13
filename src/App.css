@@ -14,9 +14,21 @@ button {
   justify-content: center;
 }
 
+.Description {
+  font-style: oblique;
+  color: white;
+  overflow: hidden;
+  height: 55px;
+  vertical-align: middle;
+  text-align: center;
+  /* word-wrap: break-word; */
+}
+
 .Cards {
   display: inline-block;
-  padding: 0px 20px 0px 20px;
+  margin: 0px 20px 0px 20px;
+  background-color: black;
+  width: 185px;
 }
 
 .Bank {

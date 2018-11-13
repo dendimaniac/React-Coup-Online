@@ -6,13 +6,68 @@ import captain from './images/Captain.png';
 import assassin from './images/Assassin.png';
 import ambassador from './images/Ambassador.png';
 import coin from './images/Coin.png';
+
 class Coup extends Component {
   constructor(props) {
     super(props);
     this.state = {
       myCoin: 0,
+      currentCard: 0,
+      isChallenging: false,
+      challengeResult: false,
+      isBlocking: false,
+      blockResult: false,
+      cards: [
+        {
+          image: duke,
+          name: 'Duke',
+          description: 'TAX: Takes 3 coins from Treasury + Blocks Foreign Aid',
+        },
+        {
+          image: contessa,
+          name: 'Contessa',
+          description: 'Blocks assassination',
+        },
+        {
+          image: captain,
+          name: 'Captain',
+          description: 'STEAL: Steal 2 coins from another player + Blocks stealing',
+        },
+        {
+          image: assassin,
+          name: 'Assassin',
+          description: 'ASSASSINATE: Pay 3 coins to assassinate another player',
+        },
+        {
+          image: ambassador,
+          name: 'Ambassador',
+          description: 'EXCHANGE: Exchange cards with Court Deck + Blocks stealing',
+        },
+      ]
     };
     this.changeCoin = this.changeCoin.bind(this);
+    this.randomCard = this.randomCard.bind(this);
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    if ((this.state.myCoin !== nextState.myCoin)/*  || (this.state.currentCard !== nextState.currentCard) */) {
+      return false;
+    }
+    else {
+      return true;
+    }
+  }
+
+  randomCard = () => {
+    let random = Math.floor(Math.random() * this.state.cards.length);
+    return (
+      <div className="Cards">
+        <img src={this.state.cards[random].image} alt="Card"></img>
+        <div className="Description">
+          {this.state.cards[random].description}
+        </div>
+      </div>
+    );
   }
 
   changeCoin = (event) => {
@@ -30,7 +85,7 @@ class Coup extends Component {
           <button value = {-7} onClick ={this.changeCoin}>Coup</button>
           <button value = {3} onClick ={this.changeCoin}>Tax</button>
           <button value = {-3} onClick ={this.changeCoin}>Assassinate</button>
-          <button>Exchange</button>
+          <button onClick = {this.randomCard}>Exchange</button>
           <button value = {2} onClick ={this.changeCoin}>Steal</button>
         </div>
 
@@ -40,13 +95,13 @@ class Coup extends Component {
           </div>
 
           <div className="P1-cards">
-            <img src={duke} onMouseOver alt="Duke" className="Cards"></img>
-            <img src={assassin} alt="Assassin" className="Cards"></img>
+            {this.randomCard()}
+            {this.randomCard()}
           </div>
 
           <div className="P2-cards">
-            <img src={captain} alt="Captain" className="Cards"></img>
-            <img src={contessa} alt="Contessa" className="Cards"></img>
+            {this.randomCard()}
+            {this.randomCard()}
           </div>
         </div>
       </div>
