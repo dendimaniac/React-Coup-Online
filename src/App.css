@@ -1,14 +1,35 @@
 .App {
-  display: inline-block;
+  /* display: inline-block; */
+  width: 100%;
+  height: 100vh;
 }
 
 .Actions {
-  height: 100vh;
+  height: 100%;
+  width: 15%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  /* background-color: #111; */
+  overflow-x: hidden;
+}
+
+.Board {
+  margin-left: 160px; /* Same as the width of the sidenav */
+  font-size: 28px; /* Increased text to enable scrolling */
+  padding: 0px 10px;
+  height: 100%;
+}
+
+.Cards {
+  width: 184px;
+  width: 233px;
 }
 
 button {
   display: block;
-  width: 20vh;
+  width: 100%;
   height: calc(100vh/9);
   background-color: #b2fff0;
   justify-content: center;
