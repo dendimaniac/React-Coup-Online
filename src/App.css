@@ -37,9 +37,7 @@ button {
 
 .Description {
   font-style: oblique;
-  color: white;
   overflow: hidden;
-  height: 55px;
   vertical-align: middle;
   text-align: center;
 }
