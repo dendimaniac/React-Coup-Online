@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import './App.css';
 import cards from './static/cards';
 import Card from './components/Card/Card';
-import coin from './static/images/Coin.png';
 
 class Coup extends Component {
   state = {
     deck: this.createDeck(),
     players: [],
     isBot: false,
+    toShow: false,
   };
 
   componentWillMount() {
@@ -26,10 +26,10 @@ class Coup extends Component {
     return deck;
   }
 
-  drawCards(noOfCards) {
+  drawCards = (noOfCards) => {
     const deck = [...this.state.deck];
     const drawnCards = Array.from(Array(noOfCards), () => null).map(() => {
-      const index = Math.floor(Math.random() * deck.lengh)
+      const index = Math.floor(Math.random() * deck.length)
       const card = deck[index]
       deck.splice(index, 1)
       return card
@@ -38,7 +38,7 @@ class Coup extends Component {
     return drawnCards
   }
 
-  createPlayers(drawnCards) {
+  createPlayers = (drawnCards) => {
     const players = Array.from(Array(2), () => null).map((player, i) => {
       return {
         coin: 2,
@@ -74,11 +74,9 @@ class Coup extends Component {
   }
 
   handleForeignAid = () => {
-
-  }
-
-  foreignAidBlock = () => {
-    
+    this.setState({
+      toShow: true,
+    })
   }
 
   getForeignAid = () => {
@@ -92,6 +90,7 @@ class Coup extends Component {
     }
     this.setState({
       isBot: !this.state.isBot,
+      toShow: false,
       players,
     });
   }
@@ -149,7 +148,22 @@ class Coup extends Component {
   }
 
   toBlock = () => {
+    this.setState({
+      isBot: !this.state.isBot,
+      toShow: false,
+    });
+  }
 
+  renderBlockButton = () => {
+    if (this.state.toShow === false) {
+      return null;
+    }
+    return (
+      <div>
+        <button onClick={this.toBlock} className="block-fa">Block</button>
+        <button onClick={this.getForeignAid} className="no-block-fa">Pass</button>
+      </div>
+    )
   }
 
   render() {
@@ -162,12 +176,9 @@ class Coup extends Component {
         </div>
 
         <div className="Board">
-          <div className="Bank">
-            <img src={coin} alt="Coin"></img>
-          </div>
-
           <div className="P1-cards">
             {this.renderCard(0)}
+            {this.renderBlockButton()}
           </div>
 
           <div className="P2-cards">

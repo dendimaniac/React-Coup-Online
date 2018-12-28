@@ -6,15 +6,19 @@ class Card extends Component {
         const { isShown, name, image, description } = this.props;
         if (isShown === true) {
           return (
-            <div>
+            <div className="card-holder">
               <img className="Cards" alt={name} src={image}></img>
-              <div>{name}</div>
-              <div className="Description">{description}</div>
+              <div className="Description">
+                <div>{name}</div>
+                <div>{description}</div>
+              </div>
             </div>
           );
         }
         return (
-          <img className="Cards" alt="Card Back" src={cardBack}></img>
+          <div className="card-holder">
+            <img className="Cards card-back" alt="Card Back" src={cardBack}></img>
+          </div>
         );
     }
 }
