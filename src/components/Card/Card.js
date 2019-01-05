@@ -7,17 +7,17 @@ class Card extends Component {
         if (isShown === true) {
           return (
             <div className="card-holder">
-              <img className="Cards" alt={name} src={image}></img>
-              <div className="Description">
-                <div>{name}</div>
-                <div>{description}</div>
+              <img className="cards" alt={name} src={image}></img>
+              <div className="description">
+                <div className="description name">{name}</div>
+                <div className="description info">{description}</div>
               </div>
             </div>
           );
         }
         return (
           <div className="card-holder">
-            <img className="Cards card-back" alt="Card Back" src={cardBack}></img>
+            <img className="cards card-back" alt="Card Back" src={cardBack}></img>
           </div>
         );
     }

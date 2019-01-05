@@ -2,14 +2,14 @@ html {
   font-size: 10px;
 }
 
-.App {
+.app {
   /* display: inline-block; */
   width: 100%;
   font-size: 20px;
   height: 100vh;
 }
 
-.Actions {
+.actions {
   height: 100%;
   width: 15%;
   position: fixed;
@@ -19,7 +19,7 @@ html {
   overflow-x: hidden;
 }
 
-.Board {
+.board {
   margin-left: 160px; /* Same as the width of the sidenav */
   font-size: 28px; /* Increased text to enable scrolling */
   padding: 0px 10px;
@@ -34,27 +34,32 @@ button {
   justify-content: center;
 }
 
-.Description {
+.description {
   padding: 0px;
   margin: 0px;
   font-size: 1.5rem;
   line-height: 2rem;
   overflow: hidden;
-  vertical-align: middle;
   text-align: left;
+}
+
+.name {
+  font-size: 2rem;
+  font-weight: bold;
 }
 
 .card-holder {
   display: inline-block;
   width: 200px;
   height: 350px;
+  vertical-align: middle;
   margin: 2px 20px;
   border: solid white 5px;
   border-radius: 25px;
   box-shadow: 1px 2px 4px rgba(0, 0, 0, .5);
 }
 
-.Cards {
+.cards {
   width: 100%;
   border-radius: 25px;
 }
@@ -63,7 +68,7 @@ button {
   height: 100%;
 }
 
-.P1-cards {
+.p1-cards {
   position: absolute;
   left: 50%;
   top: 0px;
@@ -71,7 +76,7 @@ button {
     transform: translateX(-50%);
 }
 
-.P2-cards {
+.p2-cards {
   position: absolute;
   left: 50%;
   bottom: 0px;

@@ -136,7 +136,7 @@ class Coup extends Component {
     }
     activePlayer.coin -= 7;
     do {
-      cardIndex = Math.floor(Math.random());
+      cardIndex = Math.round(Math.random() * targetPlayer.hand.length);
     } while (targetPlayer.hand[cardIndex].isShown === true);
     targetPlayer.hand[cardIndex].isShown = true;
     players.splice(activeIndex, 1, activePlayer);
@@ -168,20 +168,20 @@ class Coup extends Component {
 
   render() {
     return (
-      <div className="App">
-        <div className="Actions">
+      <div className="app">
+        <div className="actions">
           <button onClick={this.toCoup}>Coup</button>
           <button onClick={this.getIncome}>Income</button>
           <button onClick={this.handleForeignAid}>Foreign Aid</button>
         </div>
 
-        <div className="Board">
-          <div className="P1-cards">
+        <div className="board">
+          <div className="p1-cards">
             {this.renderCard(0)}
             {this.renderBlockButton()}
           </div>
 
-          <div className="P2-cards">
+          <div className="p2-cards">
             {this.renderCard(1)}
           </div>
         </div>
