@@ -1,19 +1,19 @@
-import React, { Component } from 'react';
-import './App.css';
-import cards from './static/cards';
-import Card from './components/Card/Card';
+import React, { Component } from "react";
+import "./App.css";
+import cards from "./static/cards";
+import Card from "./components/Card/Card";
 
 class Coup extends Component {
   state = {
     deck: this.createDeck(),
     players: [],
     isBot: false,
-    toShow: false,
+    toShow: false
   };
 
   componentWillMount() {
-    const drawnCards = this.drawCards(4)
-    this.createPlayers(drawnCards)
+    const drawnCards = this.drawCards(4);
+    this.createPlayers(drawnCards);
   }
 
   createDeck() {
@@ -26,38 +26,36 @@ class Coup extends Component {
     return deck;
   }
 
-  drawCards = (noOfCards) => {
+  drawCards = noOfCards => {
     const deck = [...this.state.deck];
     const drawnCards = Array.from(Array(noOfCards), () => null).map(() => {
-      const index = Math.floor(Math.random() * deck.length)
-      const card = deck[index]
-      deck.splice(index, 1)
-      return card
-    })
-    this.setState({ deck })
-    return drawnCards
-  }
+      const index = Math.floor(Math.random() * deck.length);
+      const card = deck[index];
+      deck.splice(index, 1);
+      return card;
+    });
+    this.setState({ deck });
+    return drawnCards;
+  };
 
-  createPlayers = (drawnCards) => {
+  createPlayers = drawnCards => {
     const players = Array.from(Array(2), () => null).map((player, i) => {
       return {
         coin: 2,
         hand: drawnCards.slice(i * 2, i * 2 + 2)
-      }
-    })
-    this.setState({ players })
-  }
+      };
+    });
+    this.setState({ players });
+  };
 
-  renderCard = (playerIndex) => {
+  renderCard = playerIndex => {
     if (this.state.players.length === 0) {
       return null;
     }
     const players = [...this.state.players];
     const playerHand = players[playerIndex].hand;
-    return (
-      playerHand.map(card => <Card {...card} />)
-    );
-  }
+    return playerHand.map(card => <Card {...card} />);
+  };
 
   getIncome = () => {
     const players = [...this.state.players];
@@ -69,15 +67,15 @@ class Coup extends Component {
     }
     this.setState({
       isBot: !this.state.isBot,
-      players,
+      players
     });
-  }
+  };
 
   handleForeignAid = () => {
     this.setState({
-      toShow: true,
-    })
-  }
+      toShow: true
+    });
+  };
 
   getForeignAid = () => {
     const players = [...this.state.players];
@@ -91,9 +89,9 @@ class Coup extends Component {
     this.setState({
       isBot: !this.state.isBot,
       toShow: false,
-      players,
+      players
     });
-  }
+  };
 
   toCoup = () => {
     const players = [...this.state.players];
@@ -105,13 +103,31 @@ class Coup extends Component {
     const targetPlayer = players[targetIndex];
 
     if (activeIndex === 1) {
-      this.coupPlayer(activeIndex, targetIndex, players, activePlayer, targetPlayer);
+      this.coupPlayer(
+        activeIndex,
+        targetIndex,
+        players,
+        activePlayer,
+        targetPlayer
+      );
     } else {
-      this.coupBot(activeIndex, targetIndex, players, activePlayer, targetPlayer);
+      this.coupBot(
+        activeIndex,
+        targetIndex,
+        players,
+        activePlayer,
+        targetPlayer
+      );
     }
-  }
+  };
 
-  coupPlayer = (activeIndex, targetIndex, players, activePlayer, targetPlayer) => {
+  coupPlayer = (
+    activeIndex,
+    targetIndex,
+    players,
+    activePlayer,
+    targetPlayer
+  ) => {
     let cardIndex = 0;
     if (activePlayer.coin < 7) {
       return;
@@ -125,9 +141,9 @@ class Coup extends Component {
     players.splice(targetIndex, 1, targetPlayer);
     this.setState({
       isBot: !this.state.isBot,
-      players,
+      players
     });
-  }
+  };
 
   coupBot = (activeIndex, targetIndex, players, activePlayer, targetPlayer) => {
     let cardIndex = 0;
@@ -136,54 +152,63 @@ class Coup extends Component {
     }
     activePlayer.coin -= 7;
     do {
-      cardIndex = Math.round(Math.random() * targetPlayer.hand.length);
+      cardIndex = Math.round(Math.random());
     } while (targetPlayer.hand[cardIndex].isShown === true);
     targetPlayer.hand[cardIndex].isShown = true;
     players.splice(activeIndex, 1, activePlayer);
     players.splice(targetIndex, 1, targetPlayer);
     this.setState({
       isBot: !this.state.isBot,
-      players,
+      players
     });
-  }
+  };
 
   toBlock = () => {
     this.setState({
       isBot: !this.state.isBot,
-      toShow: false,
+      toShow: false
     });
-  }
+  };
 
   renderBlockButton = () => {
     if (this.state.toShow === false) {
       return null;
     }
     return (
-      <div>
-        <button onClick={this.toBlock} className="block-fa">Block</button>
-        <button onClick={this.getForeignAid} className="no-block-fa">Pass</button>
+      <div className="block-button">
+        <button className="button" onClick={this.toBlock}>
+          Block
+        </button>
+        <button className="button" onClick={this.getForeignAid}>
+          Pass
+        </button>
       </div>
-    )
-  }
+    );
+  };
 
   render() {
     return (
       <div className="app">
         <div className="actions">
-          <button onClick={this.toCoup}>Coup</button>
-          <button onClick={this.getIncome}>Income</button>
-          <button onClick={this.handleForeignAid}>Foreign Aid</button>
+          <button className="button" onClick={this.toCoup}>
+            Coup
+          </button>
+          <button className="button" onClick={this.getIncome}>
+            Income
+          </button>
+          <button className="button" onClick={this.handleForeignAid}>
+            Foreign Aid
+          </button>
         </div>
 
         <div className="board">
-          <div className="p1-cards">
-            {this.renderCard(0)}
+          <div className="p1-cards">{this.renderCard(0)}</div>
+
+          <div className="block-button-container">
             {this.renderBlockButton()}
           </div>
 
-          <div className="p2-cards">
-            {this.renderCard(1)}
-          </div>
+          <div className="p2-cards">{this.renderCard(1)}</div>
         </div>
       </div>
     );

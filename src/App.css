@@ -3,35 +3,48 @@ html {
 }
 
 .app {
-  /* display: inline-block; */
   width: 100%;
   font-size: 20px;
+  display: grid;
+  grid-template-columns: 1fr 6fr;
+  grid-template-rows: 1fr;
   height: 100vh;
 }
 
 .actions {
-  height: 100%;
-  width: 15%;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  overflow-x: hidden;
+  display: grid;
+  grid-template-rows: repeat(9, 100px);
+  grid-gap: 7px;
 }
 
 .board {
-  margin-left: 160px; /* Same as the width of the sidenav */
-  font-size: 28px; /* Increased text to enable scrolling */
-  padding: 0px 10px;
-  height: 100%;
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: repeat(3, auto);
 }
 
-button {
+.button {
   display: block;
   width: 100%;
-  height: calc(100vh/9);
-  background-color: #b2fff0;
   justify-content: center;
+  outline: none;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, .5);
+  border-radius: 8px;
+  color: black;
+  background-color: white;
+  border: 2px solid #2383ff;
+}
+
+.button:hover {
+  background-color: #2383ff;
+  color: white;
+}
+
+.button:active {
+  position: relative;
+  box-shadow: none;
+  top: 1px;
+  background-color: #1279ff;
 }
 
 .description {
@@ -61,25 +74,32 @@ button {
 
 .cards {
   width: 100%;
-  border-radius: 25px;
+  border-radius: 25px 25px 8px 8px;;
 }
 
 .card-back {
   height: 100%;
+  border-radius: 25px;
+}
+
+.block-button {
+  display: grid;
+  grid-template-rows: repeat(2, 50px);
+  grid-template-columns: 200px;
+  grid-gap: 5px;
+}
+
+.block-button-container {
+  align-self: center;
+  justify-self: center;
 }
 
 .p1-cards {
-  position: absolute;
-  left: 50%;
-  top: 0px;
-  -webkit-transform: translateX(-50%);
-    transform: translateX(-50%);
+  align-self: start;
+  justify-self: center;
 }
 
 .p2-cards {
-  position: absolute;
-  left: 50%;
-  bottom: 0px;
-  -webkit-transform: translateX(-50%);
-    transform: translateX(-50%);
+  align-self: end;
+  justify-self: center;
 }
