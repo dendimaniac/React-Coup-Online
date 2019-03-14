@@ -17,6 +17,10 @@ html {
   grid-gap: 7px;
 }
 
+.actions .button, .block-button .button {
+  font-size: 2rem;
+}
+
 .board {
   display: grid;
   grid-template-columns: auto;
@@ -83,7 +87,7 @@ html {
 
 .block-button {
   display: grid;
-  grid-template-rows: repeat(2, 50px);
+  grid-template-rows: repeat(2, 70px);
   grid-template-columns: 200px;
   grid-gap: 5px;
 }
@@ -119,11 +123,10 @@ html {
 
 .text-fade {
   font-weight: 100;
-  opacity: 0.4;
+  opacity: 0.7;
 }
 
 .text-bold {
   font-weight: bold;
-  font-size: 3rem;
-  opacity: 1;
+  font-size: 4rem;
 }

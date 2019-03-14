@@ -195,6 +195,10 @@ class Coup extends Component {
     }, "");
   }
 
+  currentTurn(test) {
+    return test ? 'text-bold' : 'text-fade'
+  }
+
   render() {
     return (
       <div className="app">
@@ -213,10 +217,7 @@ class Coup extends Component {
         <div className="board">
           <div className="board-item start">
             <div
-              className={`name start ${this.classNames({
-                "text-bold": this.state.isBot,
-                "text-fade": !this.state.isBot
-              })}`}
+              className={`name start ${this.currentTurn(this.state.isBot)}`}
             >
               Bot
             </div>
@@ -229,10 +230,7 @@ class Coup extends Component {
 
           <div className="board-item end">
             <div
-              className={`name end ${this.classNames({
-                "text-bold": !this.state.isBot,
-                "text-fade": this.state.isBot
-              })}`}
+              className={`name end ${this.currentTurn(!this.state.isBot)}`}
             >
               Player
             </div>
