@@ -186,6 +186,15 @@ class Coup extends Component {
     );
   };
 
+  classNames(obj) {
+    return Object.keys(obj).reduce((result, key) => {
+      if (!!obj[key]) {
+        return result + " " + key;
+      }
+      return result;
+    }, "");
+  }
+
   render() {
     return (
       <div className="app">
@@ -202,13 +211,33 @@ class Coup extends Component {
         </div>
 
         <div className="board">
-          <div className="p1-cards">{this.renderCard(0)}</div>
+          <div className="board-item start">
+            <div
+              className={`name start ${this.classNames({
+                "text-bold": this.state.isBot,
+                "text-fade": !this.state.isBot
+              })}`}
+            >
+              Bot
+            </div>
+            <div className="player-cards">{this.renderCard(1)}</div>
+          </div>
 
           <div className="block-button-container">
             {this.renderBlockButton()}
           </div>
 
-          <div className="p2-cards">{this.renderCard(1)}</div>
+          <div className="board-item end">
+            <div
+              className={`name end ${this.classNames({
+                "text-bold": !this.state.isBot,
+                "text-fade": this.state.isBot
+              })}`}
+            >
+              Player
+            </div>
+            <div className="player-cards">{this.renderCard(0)}</div>
+          </div>
         </div>
       </div>
     );
