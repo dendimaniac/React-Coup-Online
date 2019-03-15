@@ -112,13 +112,19 @@ html {
 }
 
 .start {
-  justify-self: right;
   align-self: start;
 }
 
 .end {
-  justify-self: right;
   align-self: end;
+}
+
+.right {
+  justify-self: right;
+}
+
+.left {
+  justify-self: left;
 }
 
 .text-fade {

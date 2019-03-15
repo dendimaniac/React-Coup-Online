@@ -186,17 +186,16 @@ class Coup extends Component {
     );
   };
 
-  classNames(obj) {
-    return Object.keys(obj).reduce((result, key) => {
-      if (!!obj[key]) {
-        return result + " " + key;
-      }
-      return result;
-    }, "");
-  }
-
   currentTurn(test) {
     return test ? 'text-bold' : 'text-fade'
+  }
+
+  getCoins = playerIndex => {
+    if (this.state.players.length === 0) {
+      return null;
+    }
+    const players = [...this.state.players];
+    return players[playerIndex].coin + " Coins";
   }
 
   render() {
@@ -217,11 +216,14 @@ class Coup extends Component {
         <div className="board">
           <div className="board-item start">
             <div
-              className={`name start ${this.currentTurn(this.state.isBot)}`}
+              className={`name start right ${this.currentTurn(this.state.isBot)}`}
             >
               Bot
             </div>
             <div className="player-cards">{this.renderCard(1)}</div>
+            <div className="start left">
+              {this.getCoins(1)}
+            </div>
           </div>
 
           <div className="block-button-container">
@@ -230,11 +232,14 @@ class Coup extends Component {
 
           <div className="board-item end">
             <div
-              className={`name end ${this.currentTurn(!this.state.isBot)}`}
+              className={`name end right ${this.currentTurn(!this.state.isBot)}`}
             >
               Player
             </div>
             <div className="player-cards">{this.renderCard(0)}</div>
+            <div className="end left">
+              {this.getCoins(0)}
+            </div>
           </div>
         </div>
       </div>
