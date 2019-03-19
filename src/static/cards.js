@@ -36,3 +36,11 @@ export default [
     isShown: false
   }
 ];
+
+/* const players = 
+
+const getPlayer = () => {
+  players
+}
+
+export default { players, getPlayer } */
