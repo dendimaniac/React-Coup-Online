@@ -17,8 +17,14 @@ html {
   grid-gap: 7px;
 }
 
-.actions .button, .block-button .button, .card-choice-button .button {
+.actions .button,
+.block-button .button,
+.card-choice-button .button {
   font-size: 2rem;
+}
+
+.coins {
+  font-size: 3rem;
 }
 
 .board {
@@ -32,7 +38,7 @@ html {
   width: 100%;
   justify-content: center;
   outline: none;
-  box-shadow: 2px 2px 4px rgba(0, 0, 0, .5);
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   border-radius: 8px;
   color: black;
   background-color: white;
@@ -72,12 +78,12 @@ html {
   vertical-align: middle;
   border: solid white 5px;
   border-radius: 25px;
-  box-shadow: 1px 2px 4px rgba(0, 0, 0, .5);
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .cards {
   width: 100%;
-  border-radius: 25px 25px 8px 8px;;
+  border-radius: 25px 25px 8px 8px;
 }
 
 .card-back {
@@ -85,7 +91,8 @@ html {
   border-radius: 25px;
 }
 
-.block-button, .card-choice-button {
+.block-button,
+.card-choice-button {
   display: grid;
   grid-template-rows: repeat(2, 70px);
   grid-template-columns: 200px;

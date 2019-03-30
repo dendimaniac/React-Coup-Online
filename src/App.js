@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import "./App.css";
 import cards from "./static/cards";
 import Card from "./components/Card/Card";
+import Actions from "./components/Actions";
+import Board from "./components/Board";
 
 class Coup extends Component {
   state = {
@@ -196,48 +198,20 @@ class Coup extends Component {
   render() {
     return (
       <div className="app">
-        <div className="actions">
-          <button className="button" onClick={this.handleCoup}>
-            Coup
-          </button>
-          <button className="button" onClick={this.getIncome}>
-            Income
-          </button>
-          <button className="button" onClick={this.handleForeignAid}>
-            Foreign Aid
-          </button>
-        </div>
+        <Actions
+          handleCoup={this.handleCoup}
+          getIncome={this.getIncome}
+          handleForeignAid={this.handleForeignAid}
+        />
 
-        <div className="board">
-          <div className="board-item start">
-            <div
-              className={`name start right ${this.currentTurn(
-                this.state.isBot
-              )}`}
-            >
-              Bot
-            </div>
-            <div className="player-cards">{this.renderCard(1)}</div>
-            <div className="start left">{this.getCoins(1)}</div>
-          </div>
-
-          <div className="action-choices">
-            {this.renderBlockButton()}
-            {this.renderCardChoiceButton()}
-          </div>
-
-          <div className="board-item end">
-            <div
-              className={`name end right ${this.currentTurn(
-                !this.state.isBot
-              )}`}
-            >
-              Player
-            </div>
-            <div className="player-cards">{this.renderCard(0)}</div>
-            <div className="end left">{this.getCoins(0)}</div>
-          </div>
-        </div>
+        <Board
+          isBot={this.state.isBot}
+          currentTurn={this.currentTurn}
+          renderCard={this.renderCard}
+          getCoins={this.getCoins}
+          renderBlockButton={this.renderBlockButton}
+          renderCardChoiceButton={this.renderCardChoiceButton}
+        />
       </div>
     );
   }
