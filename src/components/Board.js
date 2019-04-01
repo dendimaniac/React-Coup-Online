@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import ActionChoices from "./ActionChoices";
+import Player from "./Player";
 
 class Board extends Component {
   static propTypes = {
@@ -14,30 +16,30 @@ class Board extends Component {
   render() {
     return (
       <div className="board">
-        <div className="board-item start">
-          <div
-            className={`name start right ${this.props.currentTurn(this.props.isBot)}`}
-          >
-            Bot
-          </div>
-          <div className="player-cards">{this.props.renderCard(1)}</div>
-          <div className="start left coins">{this.props.getCoins(1)}</div>
-        </div>
+        <Player
+          position="start"
+          isBot={this.props.isBot}
+          currentTurn={this.props.currentTurn}
+          text="Bot"
+          playerIndex={1}
+          renderCard={this.props.renderCard}
+          getCoins={this.props.getCoins}
+        />
 
-        <div className="action-choices">
-          {this.props.renderBlockButton()}
-          {this.props.renderCardChoiceButton()}
-        </div>
+        <ActionChoices
+          renderBlockButton={this.props.renderBlockButton}
+          renderCardChoiceButton={this.props.renderCardChoiceButton}
+        />
 
-        <div className="board-item end">
-          <div
-            className={`name end right ${this.props.currentTurn(!this.props.isBot)}`}
-          >
-            Player
-          </div>
-          <div className="player-cards">{this.props.renderCard(0)}</div>
-          <div className="end left coins">{this.props.getCoins(0)}</div>
-        </div>
+        <Player
+          position="end"
+          isBot={!this.props.isBot}
+          currentTurn={this.props.currentTurn}
+          text="Player"
+          playerIndex={0}
+          renderCard={this.props.renderCard}
+          getCoins={this.props.getCoins}
+        />
       </div>
     );
   }
